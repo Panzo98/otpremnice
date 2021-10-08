@@ -104,7 +104,12 @@ export default function Servisi() {
       </FormControl>
       <TableContainer
         component={Paper}
-        style={{ marginTop: "0px", width: "80%", marginLeft: "10%" }}
+        style={{
+          marginTop: "0px",
+          width: "80%",
+          marginLeft: "10%",
+          marginBottom: "100px",
+        }}
       >
         <Table aria-label="simple table">
           <TableHead>

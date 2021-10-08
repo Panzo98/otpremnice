@@ -27,6 +27,7 @@ const servisSchema = mongoose.Schema({
   },
   opisResenja: {
     type: String,
+    default: "",
   },
   zavrseno: {
     type: Boolean,

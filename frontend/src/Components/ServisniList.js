@@ -47,17 +47,22 @@ export default function ServisniList(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let datumZavrsetka = new Date(Date.now());
-    let zavrseno = new Boolean(true);
-    axios
-      .put(`/api/servisi/servis/${id}`, {
-        brojTelefona,
-        datumZavrsetka,
-        opisResenja,
-        zavrseno,
-      })
-      .then((res) => setFinished(true))
-      .catch((err) => console.log(err));
+    console.log(opisResenja);
+    if (opisResenja !== "") {
+      let datumZavrsetka = new Date(Date.now());
+      let zavrseno = new Boolean(true);
+      axios
+        .put(`/api/servisi/servis/${id}`, {
+          brojTelefona,
+          datumZavrsetka,
+          opisResenja,
+          zavrseno,
+        })
+        .then((res) => setFinished(true))
+        .catch((err) => console.log(err));
+    } else {
+      alert("Unesite opis resenja!");
+    }
   };
 
   if (isLoading) {
@@ -79,7 +84,7 @@ export default function ServisniList(props) {
         style={{
           textAlign: "center",
           width: "100%",
-          paddingTop: "40px",
+          paddingTop: "20px",
           fontSize: "25px",
           fontWeight: "bold",
         }}
@@ -90,12 +95,20 @@ export default function ServisniList(props) {
         {finished ? <Redirect to="/servis"></Redirect> : null}
         <TextField id="standard-basic" label="Musterija" value={imeMusterije} />
         <br></br>
-        <TextField
-          id="standard-basic"
-          label="Broj telefona"
-          onChange={(e) => setBrojTelefona(e.target.value)}
-          value={brojTelefona}
-        />
+        {zavrseno ? (
+          <TextField
+            id="standard-basic"
+            label="Broj telefona"
+            value={brojTelefona}
+          />
+        ) : (
+          <TextField
+            id="standard-basic"
+            label="Broj telefona"
+            onChange={(e) => setBrojTelefona(e.target.value)}
+            value={brojTelefona}
+          />
+        )}
         <br></br>
         <TextField id="standard-basic" label="Serviser" value={serviser} />
         <br></br>
@@ -114,35 +127,44 @@ export default function ServisniList(props) {
           value={new Date(datumPrijema).toLocaleDateString("de-DE")}
         />
         <br></br>
-        <TextField
-          id="standard-multiline-static"
-          label="Opis resenja"
-          multiline
-          rows={4}
-          value={opisResenja}
-          variant="standard"
-          onChange={(e) => setOpisResenja(e.target.value)}
-        />
-
-        <br></br>
         {zavrseno ? (
-          <TextField
-            id="standard-basic"
-            label="Datum zavrsetka"
-            value={new Date(datumZavrsetka).toLocaleDateString("de-DE")}
-          />
+          <div style={{ display: "grid", maxWidth: "200px" }}>
+            <TextField
+              id="standard-multiline-static"
+              label="Opis resenja"
+              multiline
+              rows={4}
+              value={opisResenja}
+              variant="standard"
+            />
+            <TextField
+              id="standard-basic"
+              label="Datum zavrsetka"
+              value={new Date(datumZavrsetka).toLocaleDateString("de-DE")}
+            />
+          </div>
         ) : (
-          ""
+          <div style={{ display: "grid", maxWidth: "200px" }}>
+            <TextField
+              id="standard-multiline-static"
+              label="Opis resenja"
+              multiline
+              rows={4}
+              value={opisResenja}
+              variant="standard"
+              onChange={(e) => setOpisResenja(e.target.value)}
+            />
+            <Button
+              color="primary"
+              variant="contained"
+              style={{ marginTop: "20px" }}
+              onClick={handleSubmit}
+            >
+              Zavrsi
+            </Button>
+          </div>
         )}
         <br></br>
-        <Button
-          color="primary"
-          variant="contained"
-          style={{ marginTop: "20px", marginLeft: "75px" }}
-          onClick={handleSubmit}
-        >
-          Zavrsi
-        </Button>
       </div>
     </div>
   );
