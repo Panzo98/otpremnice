@@ -25,7 +25,9 @@ export default function ServisniList(props) {
       setOpisProblema(res.data.opisProblema);
       setDatumPrijema(res.data.datumPrijema);
       setOpisResenja(res.data.opisResenja);
-      setServiser(res.data.serviser.name);
+      res.data.serviser
+        ? setServiser(res.data.serviser.name)
+        : setServiser("Greska");
       setZavrseno(res.data.zavrseno);
       setDatumZavrsetka(res.data.datumZavrsetka);
       setIsLoading(false);
@@ -85,7 +87,7 @@ export default function ServisniList(props) {
         SERVISNI LIST
       </div>
       <div style={{ marginLeft: "45%", marginTop: "100px" }}>
-        {finished ? <Redirect to="/servisi"></Redirect> : null}
+        {finished ? <Redirect to="/servis"></Redirect> : null}
         <TextField id="standard-basic" label="Musterija" value={imeMusterije} />
         <br></br>
         <TextField

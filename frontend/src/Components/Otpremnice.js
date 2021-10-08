@@ -75,7 +75,11 @@ export default function Otpremnice() {
                   {row._id}
                 </TableCell>
                 <TableCell align="right">{row.primalac}</TableCell>
-                <TableCell align="right">{row.komercijalista.name}</TableCell>
+                <TableCell align="right">
+                  {row.komercijalista
+                    ? row.komercijalista.name
+                    : "Radnik No.293"}
+                </TableCell>
                 <TableCell align="right">{row.ukupnaCijena}</TableCell>
                 <TableCell align="right">{row.ukupnaCijenaPDV}</TableCell>
                 <TableCell align="right">

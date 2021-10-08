@@ -52,8 +52,11 @@ export default function KorisnikNovi() {
         />
         <br></br>
         <TextField
-          id="standard-basic"
+          id="standard-multiline-static"
           label="Opis problema"
+          multiline
+          rows={4}
+          variant="standard"
           onChange={(e) => setOpisProblema(e.target.value)}
           value={opisProblema}
         />

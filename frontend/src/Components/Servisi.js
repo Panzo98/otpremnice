@@ -1,32 +1,57 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Fab from "@material-ui/core/Fab";
+import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
+import Select from "@material-ui/core/Select";
+import PictureAsPdf from "@material-ui/icons/PictureAsPdf";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
-import PictureAsPdf from "@material-ui/icons/PictureAsPdf";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import OtpremnicaPDF from "./OtpremnicaPDF";
-import "./deleteButton.css";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import NativeSelect from "@mui/material/NativeSelect";
 import axios from "axios";
+import ServisPDF from "./ServisPDF";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./deleteButton.css";
 
 export default function Servisi() {
   const [data, setData] = useState([]);
+  const [datacopy, setDatacopy] = useState([]);
   useEffect(() => {
     axios
       .get("/api/servisi")
-      .then((res) => setData(res.data))
+      .then((res) => {
+        setData(res.data);
+        setDatacopy(res.data);
+      })
       .catch((err) => console.log(err));
     return () => {
       setData([]);
     };
   }, []);
+
+  const handleChangeSort = (e) => {
+    if (e == 10) {
+      setData(datacopy);
+    } else if (e == 20) {
+      let data1 = datacopy.filter((jed) => {
+        return jed.zavrseno !== true;
+      });
+      setData(data1);
+    } else if (e == 30) {
+      setData(datacopy);
+      let data2 = datacopy.filter((jed) => {
+        return jed.zavrseno !== false;
+      });
+      setData(data2);
+    }
+  };
 
   const handleDeleteItem = (id) => {
     axios
@@ -51,19 +76,86 @@ export default function Servisi() {
       >
         LISTA SERVISA
       </div>
+
+      <FormControl
+        fullWidth
+        style={{
+          marginTop: "90px",
+          marginLeft: "10%",
+          maxWidth: "200px",
+          minWidth: "200px",
+        }}
+      >
+        <InputLabel variant="standard" htmlFor="uncontrolled-native">
+          Filter
+        </InputLabel>
+        <NativeSelect
+          defaultValue={10}
+          inputProps={{
+            name: "Sortiraj",
+            id: "uncontrolled-native",
+          }}
+          onChange={(e) => handleChangeSort(e.target.value)}
+        >
+          <option value={10}>Sve</option>
+          <option value={20}>U obradi</option>
+          <option value={30}>Zavrseno</option>
+        </NativeSelect>
+      </FormControl>
       <TableContainer
         component={Paper}
-        style={{ marginTop: "100px", width: "80%", marginLeft: "10%" }}
+        style={{ marginTop: "0px", width: "80%", marginLeft: "10%" }}
       >
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>ID</TableCell>
-              <TableCell align="right">Musterija</TableCell>
-              <TableCell align="right">Serviser</TableCell>
+              <TableCell align="right">
+                <Select
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  native
+                >
+                  <option align="right">Musterija</option>
+                  <option align="right">Musterija A-Z </option>
+                  <option align="right">Musterija Z-A</option>
+                </Select>
+              </TableCell>
+              <TableCell align="right">
+                <Select
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  native
+                >
+                  <option align="right">Serviser</option>
+                  <option align="right">Serviser A-Z </option>
+                  <option align="right">Serviser Z-A</option>
+                </Select>
+              </TableCell>
+
               <TableCell align="right">Status</TableCell>
-              <TableCell align="right">Datum prijema</TableCell>
-              <TableCell align="right">Datum Zavrsetka</TableCell>
+              <TableCell align="right">
+                <Select
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  native
+                >
+                  <option align="right">Datum prijema</option>
+                  <option align="right">Datum prijema (najstariji)</option>
+                  <option align="right">Datum prijema (najnoviji)</option>
+                </Select>
+              </TableCell>
+              <TableCell align="right">
+                <Select
+                  labelId="demo-simple-select-standard-label"
+                  id="demo-simple-select-standard"
+                  native
+                >
+                  <option align="right">Datum zavrsetka</option>
+                  <option align="right">Datum zavrsetka (najstariji)</option>
+                  <option align="right">Datum zavrsetka (najnoviji)</option>
+                </Select>
+              </TableCell>
               <TableCell align="right">Obrisi</TableCell>
               <TableCell align="right">PDF</TableCell>
             </TableRow>
@@ -75,7 +167,9 @@ export default function Servisi() {
                   <Link to={`/servis/${row._id}`}>{row._id}</Link>
                 </TableCell>
                 <TableCell align="right">{row.imeMusterije}</TableCell>
-                <TableCell align="right">{row.serviser.name}</TableCell>
+                <TableCell align="right">
+                  {row.serviser ? row.serviser.name : "Greska"}
+                </TableCell>
                 <TableCell align="right">
                   {row.zavrseno ? "Zavrseno" : "U obradi"}
                 </TableCell>
@@ -94,17 +188,19 @@ export default function Servisi() {
                     onClick={() => handleDeleteItem(row._id)}
                   ></DeleteIcon>
                 </TableCell>
-                {/* <TableCell align="right">
-                  <PDFDownloadLink
-                    document={<OtpremnicaPDF data={row}></OtpremnicaPDF>}
-                    fileName="servis.pdf"
-                  >
-                    <PictureAsPdf
-                      className="deleteButton"
-                      style={{ fill: "blue" }}
-                    ></PictureAsPdf>
-                  </PDFDownloadLink>
-                </TableCell> */}
+                <TableCell align="right">
+                  <>
+                    <PDFDownloadLink
+                      document={<ServisPDF data={row}></ServisPDF>}
+                      fileName="servis.pdf"
+                    >
+                      <PictureAsPdf
+                        className="deleteButton"
+                        style={{ fill: "blue" }}
+                      ></PictureAsPdf>
+                    </PDFDownloadLink>
+                  </>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

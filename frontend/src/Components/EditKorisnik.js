@@ -50,38 +50,53 @@ export default function EditKorisnik(props) {
     );
   }
   return (
-    <div style={{ marginLeft: "43%", marginTop: "100px" }}>
-      {finished ? <Redirect to="/korisnici"></Redirect> : null}
-      <TextField
-        id="standard-basic"
-        label="KORISNICKO IME"
-        onChange={(e) => setName(e.target.value)}
-        value={name}
-      />
-      <br></br>
-      <TextField
-        id="standard-basic"
-        label="Email"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-      />
-      <br></br>
-      <TextField
-        id="standard-basic"
-        label="Lokacija"
-        value={lokacija}
-        onChange={(e) => setLokacija(e.target.value)}
-      />
-
-      <br></br>
-      <Button
-        color="primary"
-        variant="contained"
-        style={{ marginTop: "20px", marginLeft: "75px" }}
-        onClick={handleSubmit}
+    <div>
+      <div
+        style={{
+          textAlign: "center",
+          width: "100%",
+          paddingTop: "40px",
+          fontSize: "25px",
+          fontWeight: "bold",
+        }}
       >
-        Izmijeni korisnika
-      </Button>
+        IZMIJENI KORISNIKA
+      </div>
+      <div style={{ marginLeft: "43%", marginTop: "100px" }}>
+        {finished ? <Redirect to="/korisnici"></Redirect> : null}
+        <TextField
+          id="standard-basic"
+          style={{ width: "300px" }}
+          label="KORISNICKO IME"
+          onChange={(e) => setName(e.target.value)}
+          value={name}
+        />
+        <br></br>
+        <TextField
+          id="standard-basic"
+          style={{ width: "300px" }}
+          label="Email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+        <br></br>
+        <TextField
+          id="standard-basic"
+          label="Lokacija"
+          value={lokacija}
+          onChange={(e) => setLokacija(e.target.value)}
+        />
+
+        <br></br>
+        <Button
+          color="primary"
+          variant="contained"
+          style={{ marginTop: "20px", marginLeft: "75px" }}
+          onClick={handleSubmit}
+        >
+          Izmijeni korisnika
+        </Button>
+      </div>
     </div>
   );
 }

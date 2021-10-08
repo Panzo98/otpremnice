@@ -79,31 +79,41 @@ function App() {
             <Toolbar style={{ justifyContent: "space-between" }}>
               <Typography variant="h6">
                 <Link to="/" style={{ color: "#FfF", textDecoration: "none" }}>
-                  <Button color="inherit">POCETNA</Button>
+                  <Button color="inherit" style={{ paddingLeft: "30px" }}>
+                    POCETNA
+                  </Button>
                 </Link>
                 <Link
                   to="/skladiste"
                   style={{ color: "#FfF", textDecoration: "none" }}
                 >
-                  <Button color="inherit">SKLADISTE</Button>
+                  <Button color="inherit" style={{ paddingLeft: "30px" }}>
+                    SKLADISTE
+                  </Button>
                 </Link>
                 <Link
                   to="/korisnici"
                   style={{ color: "#FfF", textDecoration: "none" }}
                 >
-                  <Button color="inherit">KORISNICI</Button>
+                  <Button color="inherit" style={{ paddingLeft: "30px" }}>
+                    KORISNICI
+                  </Button>
                 </Link>
                 <Link
                   to="/otpremnice"
                   style={{ color: "#FfF", textDecoration: "none" }}
                 >
-                  <Button color="inherit">OTPREMNICE</Button>
+                  <Button color="inherit" style={{ paddingLeft: "30px" }}>
+                    OTPREMNICE
+                  </Button>
                 </Link>
                 <Link
                   to="/servis"
                   style={{ color: "#FfF", textDecoration: "none" }}
                 >
-                  <Button color="inherit">SERVIS</Button>
+                  <Button color="inherit" style={{ paddingLeft: "30px" }}>
+                    SERVIS
+                  </Button>
                 </Link>
               </Typography>
               <Link to="/" style={{ color: "#FfF", textDecoration: "none" }}>

@@ -11,8 +11,7 @@ router.get("/", verify, (req, res) => {
     .then((result) => {
       let data = result.filter((e) => {
         let id = JSON.stringify(e._id);
-        // Brise navodnike nakon JSON.stringify
-        id = id.replace(/\"/g, "");
+        id = id.replace(/\"/g, ""); // Brise navodnike nakon JSON.stringify
         return id !== req.user.id;
       });
       res.json(data);

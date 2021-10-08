@@ -55,13 +55,15 @@ export default function KorisnikNovi() {
         <br></br>
         <TextField
           id="standard-basic"
-          label="password"
+          type="password"
+          label="Unesite lozinku"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
         <br></br>
         <TextField
           id="standard-basic"
+          type="password"
           label="Ponovite lozinku"
           onChange={(e) => setPpassword(e.target.value)}
           value={ppassword}

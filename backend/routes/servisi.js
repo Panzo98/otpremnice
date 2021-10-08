@@ -10,6 +10,7 @@ router.get("/", verify, (req, res) => {
     .then((result) => res.json(result))
     .catch((err) => res.status(400).json(err));
 });
+
 router.delete("/servis/:id", verify, (req, res) => {
   Servis.findByIdAndRemove(req.params.id)
     .then((result) => res.json("Deleted"))
@@ -31,7 +32,7 @@ router.post("/noviServis", verify, (req, res) => {
     .then((result) => res.json(result))
     .catch((err) => res.status(400).json(err));
 });
-router.put("/:id", verify, (req, res) => {
+router.put("/servis/:id", verify, (req, res) => {
   Servis.findByIdAndUpdate(req.params.id, {
     brojTelefona: req.body.brojTelefona,
     datumZavrsetka: new Date(Date.now()),
