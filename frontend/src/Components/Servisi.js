@@ -29,14 +29,14 @@ export default function Servisi() {
   }, []);
 
   const handleDeleteItem = (id) => {
-    /* axios
-      .delete(`/api/otpremnice/${id}`)
+    axios
+      .delete(`/api/servisi/servis/${id}`)
       .then((res) => {
         let noviData = data.filter((elem) => elem._id !== id);
         setData(noviData);
         alert("Uspjesno obrisano");
       })
-      .catch((err) => alert("Greska"));*/
+      .catch((err) => alert("Greska"));
   };
   return (
     <div>
@@ -72,7 +72,7 @@ export default function Servisi() {
             {data.map((row) => (
               <TableRow key={row._id}>
                 <TableCell component="th" scope="row">
-                  {row._id}
+                  <Link to={`/servis/${row._id}`}>{row._id}</Link>
                 </TableCell>
                 <TableCell align="right">{row.imeMusterije}</TableCell>
                 <TableCell align="right">{row.serviser.name}</TableCell>
@@ -110,7 +110,7 @@ export default function Servisi() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Link to="/servis/kreiraj">
+      <Link to="/kreirajservis">
         <Fab
           color="primary"
           aria-label="add"

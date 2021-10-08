@@ -40,6 +40,17 @@ export default function Otpremnice() {
   };
   return (
     <div>
+      <div
+        style={{
+          textAlign: "center",
+          width: "100%",
+          paddingTop: "40px",
+          fontSize: "25px",
+          fontWeight: "bold",
+        }}
+      >
+        OTPREMNICE
+      </div>
       <TableContainer
         component={Paper}
         style={{ marginTop: "100px", width: "80%", marginLeft: "10%" }}

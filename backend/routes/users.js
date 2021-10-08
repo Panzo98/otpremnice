@@ -87,10 +87,6 @@ router.get("/logout", (req, res) => {
     .catch((err) => res.status(400).send(err));
 });
 
-router.get("/hey", (req, res) => {
-  res.send("Hello");
-});
-
 router.get("/check", (req, res) => {
   res.json("Hello");
 });

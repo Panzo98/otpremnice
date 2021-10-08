@@ -10,6 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
+import InputLabel from "@mui/material/InputLabel";
 import DeleteIcon from "@material-ui/icons/Delete";
 import "./deleteButton.css";
 import axios from "axios";
@@ -80,6 +81,10 @@ export default function OtpremnicaNova() {
     } else {
       setErrorKolicina(false);
     }
+
+    if (e.target.value < 0) {
+      setSelektovanaKolicina(0);
+    }
   };
 
   const handleChangeProdukt = (element) => {
@@ -92,7 +97,12 @@ export default function OtpremnicaNova() {
   };
 
   const handleAddProduct = () => {
-    if (errorKolicina || !selektovanaKolicina) {
+    if (
+      errorKolicina ||
+      !selektovanaKolicina ||
+      !selektovaniProdukt ||
+      selektovanaKolicina < 1
+    ) {
       return alert("Greska u kolicini");
     }
     let zaDodati = [
@@ -115,7 +125,7 @@ export default function OtpremnicaNova() {
 
     setProduktiZaOtpremnicu(zaDodati);
     setData(dataIzmjena);
-    setSelektovaniProdukt({});
+    setSelektovaniProdukt("");
     setSelektovanaKolicina("");
     setTotalPrice(total.toFixed(2));
     setTotalPricePDV(totalPDV.toFixed(2));
@@ -123,6 +133,17 @@ export default function OtpremnicaNova() {
 
   return (
     <>
+      <div
+        style={{
+          textAlign: "center",
+          width: "100%",
+          paddingTop: "40px",
+          fontSize: "25px",
+          fontWeight: "bold",
+        }}
+      >
+        NOVA OTPREMNICA
+      </div>
       {finished ? <Redirect to="/otpremnice"></Redirect> : null}
       <div
         style={{
@@ -132,6 +153,7 @@ export default function OtpremnicaNova() {
         }}
       >
         <TextField
+          style={{ marginTop: "70px", maxWidth: "400px", minWidth: "400px" }}
           id="standard-basic"
           label="Primalac"
           value={primalac}
@@ -139,7 +161,9 @@ export default function OtpremnicaNova() {
         />
         <br></br>
         <Select
-          style={{ marginTop: "70px" }}
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
+          style={{ marginTop: "70px", maxWidth: "400px", minWidth: "400px" }}
           native
           value={selektovaniProdukt.naziv ? selektovaniProdukt.naziv : ""}
         >

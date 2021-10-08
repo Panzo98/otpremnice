@@ -24,52 +24,65 @@ export default function KorisnikNovi() {
   };
 
   return (
-    <div style={{ marginLeft: "40%", marginTop: "100px" }}>
-      {finished ? <Redirect to="/"></Redirect> : null}
-      <TextField
-        id="standard-basic"
-        label="Ime"
-        onChange={(e) => setName(e.target.value)}
-        value={name}
-      />
-      <br></br>
-
-      <TextField
-        id="standard-basic"
-        label="E-Mail"
-        onChange={(e) => setEmail(e.target.value)}
-        value={email}
-      />
-      <br></br>
-      <TextField
-        id="standard-basic"
-        label="password"
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <br></br>
-      <TextField
-        id="standard-basic"
-        label="Ponovite lozinku"
-        onChange={(e) => setPpassword(e.target.value)}
-        value={ppassword}
-      />
-      <br></br>
-      <TextField
-        id="standard-basic"
-        label="Lokacija"
-        onChange={(e) => setLokacija(e.target.value)}
-        value={lokacija}
-      />
-      <br></br>
-      <Button
-        color="primary"
-        variant="contained"
-        style={{ marginTop: "20px", marginLeft: "75px" }}
-        onClick={handleSubmit}
+    <div>
+      <div
+        style={{
+          textAlign: "center",
+          width: "100%",
+          paddingTop: "40px",
+          fontSize: "25px",
+          fontWeight: "bold",
+        }}
       >
-        Dodaj korisnika
-      </Button>
+        NOVI KORISNIK
+      </div>
+      <div style={{ marginLeft: "45%", marginTop: "100px" }}>
+        {finished ? <Redirect to="/"></Redirect> : null}
+        <TextField
+          id="standard-basic"
+          label="Ime"
+          onChange={(e) => setName(e.target.value)}
+          value={name}
+        />
+        <br></br>
+
+        <TextField
+          id="standard-basic"
+          label="E-Mail"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+        <br></br>
+        <TextField
+          id="standard-basic"
+          label="password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
+        <br></br>
+        <TextField
+          id="standard-basic"
+          label="Ponovite lozinku"
+          onChange={(e) => setPpassword(e.target.value)}
+          value={ppassword}
+        />
+        <br></br>
+        <TextField
+          id="standard-basic"
+          label="Lokacija"
+          onChange={(e) => setLokacija(e.target.value)}
+          value={lokacija}
+        />
+        <br></br>
+        <Button
+          color="primary"
+          variant="contained"
+          style={{ marginTop: "20px", marginLeft: "75px" }}
+          onClick={handleSubmit}
+        >
+          Dodaj korisnika
+        </Button>
+      </div>
     </div>
   );
 }

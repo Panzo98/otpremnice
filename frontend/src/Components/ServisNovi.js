@@ -22,39 +22,51 @@ export default function KorisnikNovi() {
   };
 
   return (
-    <div style={{ marginLeft: "40%", marginTop: "100px" }}>
-      {finished ? <Redirect to="/servis"></Redirect> : null}
-      <TextField
-        id="standard-basic"
-        label="Musterija"
-        onChange={(e) => setImeMusterije(e.target.value)}
-        value={imeMusterije}
-      />
-      <br></br>
-
-      <TextField
-        id="standard-basic"
-        type="number"
-        label="Broj telefona"
-        onChange={(e) => setBrojTelefona(e.target.value)}
-        value={brojTelefona}
-      />
-      <br></br>
-      <TextField
-        id="standard-basic"
-        label="Opis problema"
-        onChange={(e) => setOpisProblema(e.target.value)}
-        value={opisProblema}
-      />
-      <br></br>
-      <Button
-        color="primary"
-        variant="contained"
-        style={{ marginTop: "20px", marginLeft: "75px" }}
-        onClick={handleSubmit}
+    <div>
+      <div
+        style={{
+          textAlign: "center",
+          width: "100%",
+          paddingTop: "40px",
+          fontSize: "25px",
+          fontWeight: "bold",
+        }}
       >
-        Dodaj
-      </Button>
+        NOVI SERVIS
+      </div>
+      <div style={{ marginLeft: "45%", marginTop: "100px" }}>
+        {finished ? <Redirect to="/servis"></Redirect> : null}
+        <TextField
+          id="standard-basic"
+          label="Musterija"
+          onChange={(e) => setImeMusterije(e.target.value)}
+          value={imeMusterije}
+        />
+        <br></br>
+
+        <TextField
+          id="standard-basic"
+          label="Broj telefona"
+          onChange={(e) => setBrojTelefona(e.target.value)}
+          value={brojTelefona}
+        />
+        <br></br>
+        <TextField
+          id="standard-basic"
+          label="Opis problema"
+          onChange={(e) => setOpisProblema(e.target.value)}
+          value={opisProblema}
+        />
+        <br></br>
+        <Button
+          color="primary"
+          variant="contained"
+          style={{ marginTop: "20px", marginLeft: "75px" }}
+          onClick={handleSubmit}
+        >
+          Dodaj
+        </Button>
+      </div>
     </div>
   );
 }

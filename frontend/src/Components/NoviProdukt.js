@@ -23,40 +23,54 @@ export default function NoviProdukt() {
     setPDV((e.target.value / 1.17).toFixed(2));
   };
   return (
-    <div style={{ marginLeft: "43%", marginTop: "50px" }}>
-      {finished ? <Redirect to="/skladiste"></Redirect> : null}
-      <TextField
-        id="standard-basic"
-        label="Naziv"
-        onChange={(e) => setNaziv(e.target.value)}
-        value={naziv}
-      />
-      <br></br>
-      <TextField
-        id="standard-basic"
-        label="Kolicina"
-        onChange={(e) => setKolicina(e.target.value)}
-        value={kolicina}
-      />
-      <br></br>
-      <TextField
-        id="standard-basic"
-        label="Cijena"
-        type="number"
-        value={cijena}
-        onChange={handleCijenu}
-      />
-      <br></br>
-      <TextField disabled value={PDV} label="Cijena bez PDV" />
-      <br></br>
-      <Button
-        color="primary"
-        variant="contained"
-        style={{ marginTop: "20px", marginLeft: "75px" }}
-        onClick={handleSubmit}
+    <div>
+      <div
+        style={{
+          textAlign: "center",
+          width: "100%",
+          paddingTop: "40px",
+          fontSize: "25px",
+          fontWeight: "bold",
+        }}
       >
-        Dodaj produkt
-      </Button>
+        NOVI ARTIKAL
+      </div>
+      <br></br>
+      <div style={{ marginLeft: "45%", marginTop: "50px" }}>
+        {finished ? <Redirect to="/skladiste"></Redirect> : null}
+        <TextField
+          id="standard-basic"
+          label="Naziv"
+          onChange={(e) => setNaziv(e.target.value)}
+          value={naziv}
+        />
+        <br></br>
+        <TextField
+          id="standard-basic"
+          label="Kolicina"
+          onChange={(e) => setKolicina(e.target.value)}
+          value={kolicina}
+        />
+        <br></br>
+        <TextField
+          id="standard-basic"
+          label="Cijena"
+          type="number"
+          value={cijena}
+          onChange={handleCijenu}
+        />
+        <br></br>
+        <TextField disabled value={PDV} label="Cijena bez PDV" />
+        <br></br>
+        <Button
+          color="primary"
+          variant="contained"
+          style={{ marginTop: "20px", marginLeft: "75px" }}
+          onClick={handleSubmit}
+        >
+          Dodaj produkt
+        </Button>
+      </div>
     </div>
   );
 }

@@ -16,6 +16,7 @@ import NoviProdukt from "./Components/NoviProdukt";
 import Korisnici from "./Components/Korisnici";
 import EditProdukt from "./Components/EditProdukt";
 import EditKorisnik from "./Components/EditKorisnik";
+import ServisniList from "./Components/ServisniList";
 axios.defaults.withCredentials = true;
 
 const useStyles = makeStyles((theme) => ({
@@ -80,6 +81,30 @@ function App() {
                 <Link to="/" style={{ color: "#FfF", textDecoration: "none" }}>
                   <Button color="inherit">POCETNA</Button>
                 </Link>
+                <Link
+                  to="/skladiste"
+                  style={{ color: "#FfF", textDecoration: "none" }}
+                >
+                  <Button color="inherit">SKLADISTE</Button>
+                </Link>
+                <Link
+                  to="/korisnici"
+                  style={{ color: "#FfF", textDecoration: "none" }}
+                >
+                  <Button color="inherit">KORISNICI</Button>
+                </Link>
+                <Link
+                  to="/otpremnice"
+                  style={{ color: "#FfF", textDecoration: "none" }}
+                >
+                  <Button color="inherit">OTPREMNICE</Button>
+                </Link>
+                <Link
+                  to="/servis"
+                  style={{ color: "#FfF", textDecoration: "none" }}
+                >
+                  <Button color="inherit">SERVIS</Button>
+                </Link>
               </Typography>
               <Link to="/" style={{ color: "#FfF", textDecoration: "none" }}>
                 <Button
@@ -136,19 +161,14 @@ function App() {
             ></Route>
             <Route path="/servis" exact component={() => <Servisi />}></Route>
             <Route
-              path="/servis/kreiraj"
+              path="/servis/:id"
+              exact
+              component={() => <ServisniList></ServisniList>}
+            ></Route>
+            <Route
+              path="/kreirajservis"
               exact
               component={() => <ServisNovi />}
-            ></Route>
-            <Route
-              path="/servis/provjera"
-              exact
-              component={() => <NoviProdukt />}
-            ></Route>
-            <Route
-              path="/servis/zavrsi"
-              exact
-              component={() => <NoviProdukt />}
             ></Route>
           </Switch>
         </BrowserRouter>
