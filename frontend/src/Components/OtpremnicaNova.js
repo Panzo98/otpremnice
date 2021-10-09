@@ -180,6 +180,18 @@ export default function OtpremnicaNova() {
           })}
         </Select>
         <br></br>
+        {selektovaniProdukt.naziv ? (
+          <TextField
+            style={{ marginTop: "15px", width: "100px" }}
+            id="standard-basic"
+            helperText="Cijena artikla"
+            value={selektovaniProdukt.cijenaPDV.toFixed(2) + " KM"}
+          ></TextField>
+        ) : (
+          ""
+        )}
+        <br></br>
+
         <TextField
           style={{ marginTop: "15px" }}
           type="number"

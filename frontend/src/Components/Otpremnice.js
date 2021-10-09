@@ -81,7 +81,9 @@ export default function Otpremnice() {
                     : "Radnik No.293"}
                 </TableCell>
                 <TableCell align="right">{row.ukupnaCijena}</TableCell>
-                <TableCell align="right">{row.ukupnaCijenaPDV}</TableCell>
+                <TableCell align="right">
+                  {row.ukupnaCijenaPDV.toFixed(2)}
+                </TableCell>
                 <TableCell align="right">
                   {new Date(row.datum).toLocaleDateString("de-DE")}
                 </TableCell>
